@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Simulador de investimentos com cotação em tempo real" />
+    <title>Simulador de Investimentos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+
+    <!-- Orbs de fundo animados -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <main class="container">
+
+      <!-- Botão de toggle de tema -->
+      <div class="theme-toggle-wrapper">
+        <button id="btnTema" class="btn-tema" type="button" aria-label="Alternar tema">
+          <span class="btn-tema-icon" id="temaIcone">🌙</span>
+          <span id="temaLabel">Tema claro</span>
+        </button>
+      </div>
+
+      <!-- Header com pill de cotação -->
+      <header class="page-header">
+        <div class="cotacao-pill">
+          <div class="cotacao-pill-dot"></div>
+          USD/BRL —
+          <span class="cotacao-valor-texto" id="cotacaoValor">carregando...</span>
+        </div>
+        <h1 class="page-title">Onde seu dinheiro<br>rende mais?</h1>
+        <p class="page-subtitle">Compare poupança, CDB e Tesouro Direto com cotação do dólar em tempo real</p>
+      </header>
+
+      <!-- Formulário -->
+      <section class="form-section" aria-label="Parâmetros da simulação">
+        <div class="form-grid">
+
+          <div class="field">
+            <label for="valorInicial" class="field-label">Valor inicial</label>
+            <div class="input-wrapper">
+              <span class="input-prefix">R$</span>
+              <input type="number" id="valorInicial" class="field-input" placeholder="1.000,00" min="1" step="1" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="aporteMensal" class="field-label">Aporte mensal</label>
+            <div class="input-wrapper">
+              <span class="input-prefix">R$</span>
+              <input type="number" id="aporteMensal" class="field-input" placeholder="200,00" min="0" step="1" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="prazo" class="field-label">Prazo</label>
+            <div class="input-wrapper">
+              <input type="number" id="prazo" class="field-input" placeholder="12" min="1" max="360" step="1" />
+              <span class="input-suffix">meses</span>
+            </div>
+          </div>
+
+        </div>
+
+        <div id="erroMsg" class="erro-msg" aria-live="polite"></div>
+        <button id="btnSimular" class="btn-simular" type="button">Simular agora</button>
+      </section>
+
+      <!-- Resultados -->
+      <section id="resultados" class="resultados" aria-label="Resultados da simulação" hidden>
+
+        <div class="resultados-header">
+          <h2 class="resultados-titulo">Resultado da simulação</h2>
+          <p id="resumoInvestido" class="resultados-sub"></p>
+        </div>
+
+        <div class="cards-grid" id="cardsGrid"></div>
+
+        <div class="tabela-wrapper">
+          <h3 class="tabela-titulo">Comparativo detalhado</h3>
+          <table class="tabela">
+            <thead>
+              <tr>
+                <th>Modalidade</th>
+                <th>Taxa anual</th>
+                <th>Total investido</th>
+                <th>Rendimento</th>
+                <th>Montante (BRL)</th>
+                <th>Montante (USD)</th>
+              </tr>
+            </thead>
+            <tbody id="tabelaBody"></tbody>
+          </table>
+        </div>
+
+        <button id="btnLimpar" class="btn-limpar" type="button">Nova simulação</button>
+
+      </section>
+
+      <!-- Favoritos -->
+      <section id="favoritosSection" class="favoritos-section" aria-label="Simulações favoritas">
+        <div class="favoritos-header">
+          <h2 class="favoritos-titulo">Simulações salvas</h2>
+          <button id="btnLimparFavoritos" class="btn-limpar-favoritos" type="button">Limpar tudo</button>
+        </div>
+        <div id="favoritosLista" class="favoritos-lista"></div>
+        <p id="favoritosVazio" class="favoritos-vazio">Nenhuma simulação salva ainda.</p>
+      </section>
+
+    </main>
+
+    <script type="module" src="JS/main.js"></script>
+  </body>
+</html>
